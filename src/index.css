@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  
+  --color-presentation-bg: #0F172A;
+  --color-presentation-surface: #1E293B;
+  --color-presentation-primary: #3B82F6;
+  --color-presentation-primary-hover: #2563EB;
+  --color-presentation-accent: #10B981;
+  --color-presentation-text: #F8FAFC;
+  --color-presentation-muted: #94A3B8;
+  --color-presentation-border: #334155;
+}
+
+@layer base {
+  body {
+    @apply bg-presentation-bg text-presentation-text font-sans antialiased;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+  }
+}
+
+@layer utilities {
+  /* Custom scrollbar for inner scrolling containers */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 12px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: var(--color-presentation-surface);
+    border-radius: 8px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background-color: var(--color-presentation-primary);
+    border-radius: 8px;
+    border: 3px solid var(--color-presentation-surface);
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.3s ease-out forwards;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+}

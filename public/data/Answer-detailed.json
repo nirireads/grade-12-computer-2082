@@ -1,0 +1,1405 @@
+{
+  "_readme": {
+    "description": "NEB Grade XII Computer Science — Master Question Bank. Used by a local webapp to fetch and render questions, answers, and study material. All content sourced from Asmita Question Bank and NEB past papers 2068–2082.",
+    "how_to_use": "Fetch this JSON file locally. The top-level keys are: _readme, exam, MCQ, SAQ, LAQ. Loop through MCQ array for Q1–Q9. Loop through SAQ array for Q10–Q14. Loop through LAQ array for Q15–Q16. Each SAQ/LAQ slot has an 'options' array representing OR choices — the student attempts ONE.",
+    "rendering_guide": {
+      "MCQ": "For each question, show the question text, render four options A–D, highlight the correct one, show the tip below.",
+      "SAQ_LAQ": "For each option, show the question, year, importance stars, then loop through the 'answer' array and render each block by its type.",
+      "answer_block_types": {
+        "paragraph": "Render as a <p> tag. Use the 'text' field.",
+        "subheading": "Render as <strong> or <h4>. Use the 'text' field.",
+        "list": "Render as <ul><li> tags. Loop through 'items' array.",
+        "numbered_list": "Render as <ol><li> tags. Loop through 'items' array.",
+        "code": "Render as <pre><code> tags. Use 'lang' for syntax class. Use 'content' field — newlines are \\n.",
+        "table": "Render as <table>. 'headers' array is the header row. 'rows' is array of arrays — each inner array is one table row. Column A = headers[0], Column B = headers[1] etc."
+      }
+    },
+    "importance_guide": {
+      "3": "High probability — appeared 3 or more times or in recent model paper. Must study.",
+      "2": "Medium probability — appeared 1–2 times. Likely to appear.",
+      "1": "Low probability — possible but less frequent."
+    },
+    "schema": {
+      "MCQ_question": {
+        "id": "Unique string e.g. Q1_1",
+        "question": "Question text string",
+        "year": "Year string e.g. 2080 or Repeated or Sample",
+        "options": { "A": "...", "B": "...", "C": "...", "D": "..." },
+        "correct": "Letter of correct option e.g. C",
+        "tip": "One-line explanation of why the answer is correct"
+      },
+      "SAQ_LAQ_slot": {
+        "slot": "e.g. Q10",
+        "chapter": "Chapter name string",
+        "type": "SAQ or LAQ",
+        "marks": "Number",
+        "options": "Array of option objects — student attempts ONE"
+      },
+      "SAQ_LAQ_option": {
+        "id": "Unique string e.g. Q10_A",
+        "question": "Full question text with marks",
+        "year": "Year(s) appeared as string",
+        "importance": "Number 1 to 3",
+        "answer": "Array of typed block objects"
+      }
+    }
+  },
+
+  "exam": {
+    "title": "NEB Grade XII Computer Science",
+    "subject_code": "4281",
+    "total_marks": 50,
+    "time": "2 hours",
+    "structure": {
+      "MCQ": { "slots": "Q1 to Q9", "marks_each": 1, "total": 9 },
+      "SAQ": { "slots": "Q10 to Q14", "marks_each": 5, "total": 25, "note": "Each slot has OR options. Attempt ONE per slot." },
+      "LAQ": { "slots": "Q15 to Q16", "marks_each": 8, "total": 16, "note": "Each slot has OR options. Attempt ONE per slot." }
+    },
+    "chapter_map": {
+      "Q1": "DBMS — SQL and Fundamentals",
+      "Q2": "DBMS — Normalization and Concepts",
+      "Q3": "Data Communication and Networking",
+      "Q4": "Web Technology — JavaScript",
+      "Q5": "Web Technology — PHP and jQuery",
+      "Q6": "Programming in C — Functions and Syntax",
+      "Q7": "Programming in C — Arrays and Structures",
+      "Q8": "Object-Oriented Programming",
+      "Q9": "SDLC and Recent Trends in Technology",
+      "Q10": "DBMS",
+      "Q11": "Web Technology — JavaScript or PHP",
+      "Q12": "Object-Oriented Programming",
+      "Q13": "Software Process Model / SDLC",
+      "Q14": "Recent Trends in Technology",
+      "Q15": "Data Communication and Networking",
+      "Q16": "Programming in C — Structure or File Handling"
+    }
+  },
+
+  "MCQ": [
+    {
+      "qNum": 1,
+      "chapter": "DBMS — SQL and Fundamentals",
+      "questions": [
+        {
+          "id": "Q1_1",
+          "question": "Which SQL command is used to modify existing data in a table?",
+          "year": "Repeated",
+          "options": { "A": "SELECT", "B": "INSERT", "C": "UPDATE", "D": "CREATE" },
+          "correct": "C",
+          "tip": "UPDATE modifies existing rows. INSERT adds new rows. SELECT retrieves data. CREATE defines structure."
+        },
+        {
+          "id": "Q1_2",
+          "question": "Which key uniquely identifies a record in a table?",
+          "year": "2080",
+          "options": { "A": "Foreign Key", "B": "Primary Key", "C": "Candidate Key", "D": "Composite Key" },
+          "correct": "B",
+          "tip": "Primary Key = unique + NOT NULL. Foreign Key links tables. Candidate Key is a possible primary key."
+        },
+        {
+          "id": "Q1_3",
+          "question": "Which of the following is NOT a DDL command?",
+          "year": "Model",
+          "options": { "A": "CREATE", "B": "ALTER", "C": "DROP", "D": "SELECT" },
+          "correct": "D",
+          "tip": "DDL = CREATE, ALTER, DROP, TRUNCATE. SELECT is a DML command (Data Manipulation Language)."
+        },
+        {
+          "id": "Q1_4",
+          "question": "A ___ key is used to link two tables together.",
+          "year": "Sample",
+          "options": { "A": "Primary Key", "B": "Candidate Key", "C": "Foreign Key", "D": "Super Key" },
+          "correct": "C",
+          "tip": "Foreign Key references the Primary Key of another table to create a relationship between them."
+        },
+        {
+          "id": "Q1_5",
+          "question": "Which SQL clause filters records based on a condition?",
+          "year": "Repeated",
+          "options": { "A": "ORDER BY", "B": "GROUP BY", "C": "HAVING", "D": "WHERE" },
+          "correct": "D",
+          "tip": "WHERE filters rows BEFORE grouping. HAVING filters AFTER GROUP BY. ORDER BY sorts results."
+        },
+        {
+          "id": "Q1_6",
+          "question": "A company needs to modify an existing table by adding a new column for employee email. Which SQL command should be used?",
+          "year": "2082",
+          "options": { "A": "CREATE", "B": "ALTER", "C": "SELECT", "D": "UPDATE" },
+          "correct": "B",
+          "tip": "ALTER TABLE modifies existing table structure. Syntax: ALTER TABLE Employee ADD email VARCHAR(50);"
+        },
+        {
+          "id": "Q1_7",
+          "question": "Which SQL query selects all records where the second letter in LNAME is 'A'?",
+          "year": "2081 GIE Set A",
+          "options": { "A": "WHERE LNAME LIKE '?A%'", "B": "WHERE LNAME LIKE '_A%'", "C": "WHERE LNAME LIKE 'A%'", "D": "WHERE LNAME LIKE '%A'" },
+          "correct": "B",
+          "tip": "'_A%' means: exactly one character, then 'A', then anything. Underscore (_) is wildcard for exactly one character."
+        },
+        {
+          "id": "Q1_8",
+          "question": "Which SQL command deletes an entire table including its structure?",
+          "year": "2079 GIE",
+          "options": { "A": "REMOVE", "B": "DROP", "C": "ALTER", "D": "DELETE" },
+          "correct": "B",
+          "tip": "DROP removes the table entirely including structure and data. DELETE removes rows only. TRUNCATE removes all rows but keeps structure."
+        },
+        {
+          "id": "Q1_9",
+          "question": "Which SQL command is used to delete specific rows from a database table?",
+          "year": "2079 Set A",
+          "options": { "A": "DELETE", "B": "REMOVE", "C": "DROP", "D": "CLEAR" },
+          "correct": "A",
+          "tip": "DELETE removes specific rows using WHERE clause. Example: DELETE FROM Student WHERE ID=5;"
+        },
+        {
+          "id": "Q1_10",
+          "question": "Which of the following is the purpose of using primary key in a database?",
+          "year": "2082",
+          "options": { "A": "To uniquely identify a record", "B": "To store duplicate records", "C": "To backup data", "D": "To enhance database size" },
+          "correct": "A",
+          "tip": "Primary Key uniquely identifies every record in a table. It cannot be NULL and cannot have duplicate values."
+        }
+      ]
+    },
+    {
+      "qNum": 2,
+      "chapter": "DBMS — Normalization and Concepts",
+      "questions": [
+        {
+          "id": "Q2_1",
+          "question": "In which normal form of database is atomicity introduced?",
+          "year": "2079 Model",
+          "options": { "A": "First", "B": "Second", "C": "Third", "D": "Fourth" },
+          "correct": "A",
+          "tip": "1NF (First Normal Form) ensures atomicity — each cell must hold a single indivisible (atomic) value."
+        },
+        {
+          "id": "Q2_2",
+          "question": "Which normal form eliminates partial dependency?",
+          "year": "2079 Model",
+          "options": { "A": "1NF", "B": "2NF", "C": "3NF", "D": "BCNF" },
+          "correct": "B",
+          "tip": "2NF removes partial dependency. 3NF removes transitive dependency. 1NF ensures atomic values."
+        },
+        {
+          "id": "Q2_3",
+          "question": "What does DML stand for?",
+          "year": "2080",
+          "options": { "A": "Data Modeling Language", "B": "Data Manipulation Language", "C": "Data Management Language", "D": "Database Markup Language" },
+          "correct": "B",
+          "tip": "DML = Data Manipulation Language. Commands: SELECT, INSERT, UPDATE, DELETE. DDL commands: CREATE, ALTER, DROP."
+        },
+        {
+          "id": "Q2_4",
+          "question": "Which of the following is NOT a standard database model?",
+          "year": "Sample",
+          "options": { "A": "Hierarchical Model", "B": "Relational Model", "C": "Network Model", "D": "Compiler Model" },
+          "correct": "D",
+          "tip": "Standard DB models: Hierarchical, Network, Relational, Object-Oriented. Compiler Model does not exist."
+        },
+        {
+          "id": "Q2_5",
+          "question": "Which of the following is NOT implemented to protect a database?",
+          "year": "2079 Model",
+          "options": { "A": "Rollback", "B": "Backup", "C": "Recovery", "D": "Firewall" },
+          "correct": "D",
+          "tip": "Firewall protects the network, not the database itself. Rollback, Backup, and Recovery are direct database protection techniques."
+        },
+        {
+          "id": "Q2_6",
+          "question": "Which SQL statements belong to DDL?",
+          "year": "2079 Model",
+          "options": { "A": "CREATE, ALTER and DROP", "B": "CREATE, INSERT and SELECT", "C": "INSERT, UPDATE and DELETE", "D": "DELETE, ALTER and DROP" },
+          "correct": "A",
+          "tip": "DDL = CREATE, ALTER, DROP, TRUNCATE. These define and change database structure, not the data inside."
+        },
+        {
+          "id": "Q2_7",
+          "question": "Which key is an attribute that matches a primary key in another table?",
+          "year": "2079 GIE Set B",
+          "options": { "A": "Candidate Key", "B": "Primary Key", "C": "Foreign Key", "D": "National Key" },
+          "correct": "C",
+          "tip": "Foreign Key creates a relationship between two tables by referencing the PK of the parent table."
+        },
+        {
+          "id": "Q2_8",
+          "question": "What is called when a user is identified via username and password in DBMS?",
+          "year": "2079 GIE Set B",
+          "options": { "A": "Authentication", "B": "Authorization", "C": "Accounting", "D": "Auditing" },
+          "correct": "A",
+          "tip": "Authentication = who are you (verify identity). Authorization = what are you allowed to do. Auditing = tracking actions."
+        },
+        {
+          "id": "Q2_9",
+          "question": "Which of the following principle applies to 2NF?",
+          "year": "2080",
+          "options": { "A": "A table must have a primary key", "B": "All non-key attributes must be fully dependent on the primary key", "C": "All attributes must be atomic", "D": "A table must have at least two attributes" },
+          "correct": "B",
+          "tip": "2NF = in 1NF AND every non-key attribute is FULLY functionally dependent on the ENTIRE primary key."
+        }
+      ]
+    },
+    {
+      "qNum": 3,
+      "chapter": "Data Communication and Networking",
+      "questions": [
+        {
+          "id": "Q3_1",
+          "question": "Which protocol is used for secure communication over a computer network?",
+          "year": "2082",
+          "options": { "A": "HTTP", "B": "FTP", "C": "HTTPS", "D": "Telnet" },
+          "correct": "C",
+          "tip": "HTTPS = HTTP + SSL/TLS encryption. Uses port 443. HTTP uses port 80 and is unsecure."
+        },
+        {
+          "id": "Q3_2",
+          "question": "Which is a remote login service?",
+          "year": "Sample",
+          "options": { "A": "FTP", "B": "HTTP", "C": "SMTP", "D": "Telnet" },
+          "correct": "D",
+          "tip": "Telnet allows remote login over a network (plain text, insecure). SSH is the secure replacement. FTP = file transfer."
+        },
+        {
+          "id": "Q3_3",
+          "question": "Which is the most common LAN transmission medium due to low cost?",
+          "year": "2081",
+          "options": { "A": "Fiber Optic Cable", "B": "Coaxial Cable", "C": "Twisted Pair Cable", "D": "Satellite Link" },
+          "correct": "C",
+          "tip": "Twisted Pair (UTP Cat5e/Cat6) is cheapest and most common in LAN. Fiber optic is fastest but expensive."
+        },
+        {
+          "id": "Q3_4",
+          "question": "Full form of OSI in networking?",
+          "year": "2081",
+          "options": { "A": "Open Software Interface", "B": "Open System Interconnection", "C": "Online System Integration", "D": "Operating System Interface" },
+          "correct": "B",
+          "tip": "OSI = Open System Interconnection. 7 layers. Mnemonic top to bottom: All People Seem To Need Data Processing."
+        },
+        {
+          "id": "Q3_5",
+          "question": "Which statement is TRUE about Star network topology?",
+          "year": "2079 Model",
+          "options": { "A": "Each device is connected to a switch or hub", "B": "Each device is connected to each other", "C": "Each device is connected in a trunk", "D": "Each device is connected to a terminal" },
+          "correct": "A",
+          "tip": "Star topology: all devices connect to a central hub or switch. If the hub fails, the entire network goes down."
+        },
+        {
+          "id": "Q3_6",
+          "question": "Which protocol is used for transferring files between computers?",
+          "year": "Repeated",
+          "options": { "A": "SMTP", "B": "HTTP", "C": "FTP", "D": "Telnet" },
+          "correct": "C",
+          "tip": "FTP = File Transfer Protocol. Uses port 21. SMTP = email sending. HTTP = web browsing."
+        },
+        {
+          "id": "Q3_7",
+          "question": "How many layers does the OSI model have?",
+          "year": "Repeated",
+          "options": { "A": "5", "B": "6", "C": "7", "D": "8" },
+          "correct": "C",
+          "tip": "OSI = 7 layers. TCP/IP model = 4 layers. The 7 layers: Physical, Data Link, Network, Transport, Session, Presentation, Application."
+        },
+        {
+          "id": "Q3_8",
+          "question": "Which type of communication technology is commonly used in IoT devices?",
+          "year": "2080 GIE",
+          "options": { "A": "Wi-Fi", "B": "Bluetooth", "C": "Zigbee", "D": "All of the above" },
+          "correct": "D",
+          "tip": "IoT devices use Wi-Fi, Bluetooth, Zigbee, Z-Wave, and LoRa — all are valid wireless protocols for IoT."
+        },
+        {
+          "id": "Q3_9",
+          "question": "Which of the following is an incorrect IP address?",
+          "year": "2079 Model",
+          "options": { "A": "192.168.0.1", "B": "192.168.1", "C": "172.255.0.0", "D": "202.10.79.4" },
+          "correct": "B",
+          "tip": "IPv4 requires exactly 4 octets (0–255) separated by dots. 192.168.1 is missing the fourth octet so it is invalid."
+        }
+      ]
+    },
+    {
+      "qNum": 4,
+      "chapter": "Web Technology — JavaScript",
+      "questions": [
+        {
+          "id": "Q4_1",
+          "question": "Which control structure in JavaScript is used to execute a block of code repeatedly based on a condition?",
+          "year": "2082",
+          "options": { "A": "For loop", "B": "if-else", "C": "switch-case", "D": "function" },
+          "correct": "A",
+          "tip": "For loop repeats a block of code. if-else is conditional. switch-case selects a branch. function defines reusable code."
+        },
+        {
+          "id": "Q4_2",
+          "question": "Which keywords are used to declare a variable in JavaScript?",
+          "year": "2079 Model",
+          "options": { "A": "int or var", "B": "float or let", "C": "var or let", "D": "char or var" },
+          "correct": "C",
+          "tip": "JavaScript uses var (function scope), let (block scope), and const (constant). int, float, char are C/Java types only."
+        },
+        {
+          "id": "Q4_3",
+          "question": "What is the result of z = 5 % 2 in JavaScript?",
+          "year": "2079 GIE Set B",
+          "options": { "A": "2.5", "B": "2", "C": "0", "D": "1" },
+          "correct": "D",
+          "tip": "% is the modulus operator and gives the remainder. 5 divided by 2 = 2 with remainder 1. So 5 % 2 = 1."
+        },
+        {
+          "id": "Q4_4",
+          "question": "Which JS function displays a dialog box asking the user to enter text?",
+          "year": "2080",
+          "options": { "A": "alert()", "B": "confirm()", "C": "input()", "D": "prompt()" },
+          "correct": "D",
+          "tip": "prompt() shows an input dialog box. alert() shows a message. confirm() shows OK/Cancel. input() does not exist in JS."
+        },
+        {
+          "id": "Q4_5",
+          "question": "Which method is used to display 'Stay Safe' in an alert box?",
+          "year": "2079 Model",
+          "options": { "A": "alert-box(\"Stay Safe\");", "B": "confirm(\"Stay Safe\");", "C": "msgbox(\"Stay Safe\");", "D": "alert(\"Stay Safe\");" },
+          "correct": "D",
+          "tip": "Correct syntax is alert(\"message\"); — no hyphen. msgbox() is VBScript only, not JavaScript."
+        },
+        {
+          "id": "Q4_6",
+          "question": "Which JS method extracts a section of a string and returns a new string?",
+          "year": "2079",
+          "options": { "A": "set()", "B": "slice()", "C": "split()", "D": "None of the above" },
+          "correct": "B",
+          "tip": "slice(start, end) extracts part of a string. split() breaks a string into an array. Example: 'Hello'.slice(0,3) = 'Hel'"
+        },
+        {
+          "id": "Q4_7",
+          "question": "Which JS method returns today's date and time?",
+          "year": "2079",
+          "options": { "A": "date() / new Date()", "B": "data() method", "C": "image() method", "D": "None of the above" },
+          "correct": "A",
+          "tip": "new Date() creates a Date object with the current date and time. Example: var d = new Date();"
+        },
+        {
+          "id": "Q4_8",
+          "question": "Where is JavaScript code written in an HTML document?",
+          "year": "Repeated",
+          "options": { "A": "Inside style tag", "B": "Inside body tag only", "C": "Inside script tag", "D": "Inside head tag only" },
+          "correct": "C",
+          "tip": "JS goes inside script tags — can be placed in either head or body. CSS goes in style tags."
+        },
+        {
+          "id": "Q4_9",
+          "question": "What is the correct syntax for referring to an external JavaScript file called 'neb.js'?",
+          "year": "2079 GIE Set A",
+          "options": { "A": "&lt;script src=\"neb.js\"&gt;&lt;/script&gt;", "B": "&lt;Java href=\"neb\"&gt;&lt;/js&gt;", "C": "&lt;script href=\"neb.js\"&gt;&lt;/script&gt;", "D": "&lt;js script src=\"neb.js\"&gt;&lt;/script&gt;" },
+          "correct": "A",
+          "tip": "External JS uses the src attribute inside a script tag: &lt;script src=\"filename.js\"&gt;&lt;/script&gt;. There is no href attribute for script tags."
+        }
+      ]
+    },
+    {
+      "qNum": 5,
+      "chapter": "Web Technology — PHP and jQuery",
+      "questions": [
+        {
+          "id": "Q5_1",
+          "question": "Select the invalid variable name in PHP.",
+          "year": "2082",
+          "options": { "A": "$name", "B": "$_name", "C": "$1name", "D": "$name123" },
+          "correct": "C",
+          "tip": "PHP variable names must start with $ followed by a letter or underscore. Starting with a number ($1name) is invalid."
+        },
+        {
+          "id": "Q5_2",
+          "question": "Which sign is used to declare a variable in PHP?",
+          "year": "2081",
+          "options": { "A": "#", "B": "@", "C": "&", "D": "$" },
+          "correct": "D",
+          "tip": "PHP uses $ before ALL variable names: $name = 'Ram'; $age = 20; Unlike JavaScript which uses var/let/const."
+        },
+        {
+          "id": "Q5_3",
+          "question": "The shortcut sign/alias for the jQuery object is?",
+          "year": "2080",
+          "options": { "A": "% sign", "B": "& sign", "C": "@ sign", "D": "$ sign" },
+          "correct": "D",
+          "tip": "jQuery uses $ as shorthand alias. $(\"p\").hide() is the same as jQuery(\"p\").hide()"
+        },
+        {
+          "id": "Q5_4",
+          "question": "jQuery method to hide a selected HTML element?",
+          "year": "2080",
+          "options": { "A": "hide(on)", "B": "invisible()", "C": "display(none)", "D": ".hide()" },
+          "correct": "D",
+          "tip": ".hide() sets display:none on the element. .show() makes it visible. .toggle() switches between show and hide."
+        },
+        {
+          "id": "Q5_5",
+          "question": "PHP function to connect to a MySQL database?",
+          "year": "2080",
+          "options": { "A": "mysqli_Open()", "B": "mysqli_connect()", "C": "mysqli_query()", "D": "db_connect()" },
+          "correct": "B",
+          "tip": "mysqli_connect(host, user, password, database) establishes DB connection. mysql_connect() is deprecated."
+        },
+        {
+          "id": "Q5_6",
+          "question": "Which PHP command is executed to concatenate variables $x with $y?",
+          "year": "2079 Model",
+          "options": { "A": "$x + $y", "B": "$x=$y", "C": "concat($x,$y)", "D": "$x.$y" },
+          "correct": "D",
+          "tip": "PHP uses dot (.) to concatenate strings: $full = $first . ' ' . $last; JavaScript uses + operator instead."
+        },
+        {
+          "id": "Q5_7",
+          "question": "Which is the correct open tag and close tag for PHP scripts?",
+          "year": "2079 GIE Set B",
+          "options": { "A": "{ }", "B": "<?php ?>", "C": "< >", "D": "<script php></script>" },
+          "correct": "B",
+          "tip": "<?php opens a PHP code block. ?> closes it. Short tag <? is not recommended for server portability."
+        },
+        {
+          "id": "Q5_8",
+          "question": "Which of the following is a server-side scripting language?",
+          "year": "2079 Model",
+          "options": { "A": "JavaScript", "B": "MySQL", "C": "PHP", "D": "jQuery" },
+          "correct": "C",
+          "tip": "PHP runs on the server and generates HTML. JavaScript and jQuery run in the browser (client-side)."
+        },
+        {
+          "id": "Q5_9",
+          "question": "Which of the following is the correct way of defining a variable in PHP?",
+          "year": "2079 Set A",
+          "options": { "A": "$variable name = value;", "B": "$variable_name = value;", "C": "$variable_name = value", "D": "$variable name as value;" },
+          "correct": "B",
+          "tip": "PHP variable names use $ prefix, no spaces allowed, and must end with a semicolon. Underscore is allowed. Correct: $variable_name = value;"
+        }
+      ]
+    },
+    {
+      "qNum": 6,
+      "chapter": "Programming in C — Functions and Syntax",
+      "questions": [
+        {
+          "id": "Q6_1",
+          "question": "The statement 'int number(int a);' is a ___",
+          "year": "2082",
+          "options": { "A": "function call", "B": "function definition", "C": "function declaration", "D": "function execution" },
+          "correct": "C",
+          "tip": "int number(int a); ends with a semicolon — that makes it a function declaration (prototype). A definition has a body { }. A call passes actual arguments."
+        },
+        {
+          "id": "Q6_2",
+          "question": "Default return type of a C function when not specified?",
+          "year": "Sample",
+          "options": { "A": "void", "B": "float", "C": "char", "D": "int" },
+          "correct": "D",
+          "tip": "In C89/C90, the default return type is int (implicit int rule). In C99 and later, return type must be explicitly declared."
+        },
+        {
+          "id": "Q6_3",
+          "question": "Which statement about C language functions is CORRECT?",
+          "year": "Sample",
+          "options": { "A": "A function name cannot be same as a C keyword", "B": "A function name can start with underscore or a letter", "C": "Default return type is int", "D": "All of the above" },
+          "correct": "D",
+          "tip": "All three statements are true in C89: no keyword names, starts with letter or underscore, default return = int."
+        },
+        {
+          "id": "Q6_4",
+          "question": "Which symbol is used to declare a pointer variable in C?",
+          "year": "Repeated",
+          "options": { "A": "& (ampersand)", "B": "# (hash)", "C": "@ (at)", "D": "* (asterisk)" },
+          "correct": "D",
+          "tip": "int *p; declares a pointer. & is the address-of operator. Example: p = &a; stores address of variable 'a' in pointer p."
+        },
+        {
+          "id": "Q6_5",
+          "question": "Which header file is required for printf() and scanf()?",
+          "year": "Repeated",
+          "options": { "A": "<conio.h>", "B": "<math.h>", "C": "<string.h>", "D": "<stdio.h>" },
+          "correct": "D",
+          "tip": "stdio.h = Standard I/O header. conio.h = console I/O (clrscr, getch). math.h = sqrt(), pow(). string.h = strcpy()."
+        },
+        {
+          "id": "Q6_6",
+          "question": "What does strcmp() return when two strings are identical?",
+          "year": "Sample",
+          "options": { "A": "1", "B": "-1", "C": "Any positive value", "D": "0" },
+          "correct": "D",
+          "tip": "strcmp(s1, s2) returns 0 if equal, negative if s1 < s2, positive if s1 > s2. Requires #include <string.h>"
+        },
+        {
+          "id": "Q6_7",
+          "question": "Header file required for sqrt() and pow() in C?",
+          "year": "Repeated",
+          "options": { "A": "<stdio.h>", "B": "<stdlib.h>", "C": "<math.h>", "D": "<conio.h>" },
+          "correct": "C",
+          "tip": "math.h contains mathematical functions: sqrt(), pow(), abs(), ceil(), floor(), log(). Compile with -lm on Linux."
+        },
+        {
+          "id": "Q6_8",
+          "question": "What does strcpy(str2, str1) do in C?",
+          "year": "Sample",
+          "options": { "A": "Compares str1 and str2", "B": "Copies str1 into str2", "C": "Concatenates str1 and str2", "D": "Finds length of str1" },
+          "correct": "B",
+          "tip": "strcpy(destination, source) copies source into destination. strcat() concatenates. strlen() finds string length."
+        },
+        {
+          "id": "Q6_9",
+          "question": "A function that does not return any value has return type:",
+          "year": "Repeated",
+          "options": { "A": "void", "B": "int", "C": "null", "D": "empty" },
+          "correct": "A",
+          "tip": "void means the function returns nothing. Example: void display() { } — no return statement is needed."
+        }
+      ]
+    },
+    {
+      "qNum": 7,
+      "chapter": "Programming in C — Arrays and Structures",
+      "questions": [
+        {
+          "id": "Q7_1",
+          "question": "Which C construct stores multiple DIFFERENT data types under one name?",
+          "year": "Repeated",
+          "options": { "A": "Array", "B": "Union", "C": "Pointer", "D": "Structure" },
+          "correct": "D",
+          "tip": "struct stores different data types (int, char, float) together. Array stores SAME type. Union shares the same memory."
+        },
+        {
+          "id": "Q7_2",
+          "question": "What is the index of the first element in a C array?",
+          "year": "Repeated",
+          "options": { "A": "1", "B": "-1", "C": "Depends on compiler", "D": "0" },
+          "correct": "D",
+          "tip": "C arrays are zero-indexed: a[0] is first, a[n-1] is last. An array int a[5] has elements a[0] to a[4]."
+        },
+        {
+          "id": "Q7_3",
+          "question": "Which operator is used to access members of a structure variable in C?",
+          "year": "Repeated",
+          "options": { "A": "-> (arrow)", "B": ":: (scope)", "C": "* (dereference)", "D": ". (dot operator)" },
+          "correct": "D",
+          "tip": "Dot (.) for struct variables: s.roll. Arrow (->) for struct pointers: ptr->roll. Both access member fields."
+        },
+        {
+          "id": "Q7_4",
+          "question": "Correct way to declare an integer array of size 10 in C?",
+          "year": "Repeated",
+          "options": { "A": "array int a[10];", "B": "int a = [10];", "C": "a[10] int;", "D": "int a[10];" },
+          "correct": "D",
+          "tip": "Correct syntax: datatype name[size]; which is int a[10]; This declares an array of 10 integers indexed a[0] to a[9]."
+        },
+        {
+          "id": "Q7_5",
+          "question": "Which loop is best suited when the number of iterations is known?",
+          "year": "Repeated",
+          "options": { "A": "while", "B": "do-while", "C": "goto", "D": "for" },
+          "correct": "D",
+          "tip": "for loop = definite/count-controlled. while = indefinite/condition-controlled. do-while executes at least once."
+        },
+        {
+          "id": "Q7_6",
+          "question": "Which stores a collection of the SAME data type in contiguous memory?",
+          "year": "Repeated",
+          "options": { "A": "Structure", "B": "Union", "C": "Array", "D": "Pointer" },
+          "correct": "C",
+          "tip": "Array = same data type in contiguous memory. struct = different types. Union = shares the same memory location."
+        },
+        {
+          "id": "Q7_7",
+          "question": "Which keyword is used to define a structure in C?",
+          "year": "Repeated",
+          "options": { "A": "class", "B": "struct", "C": "define", "D": "typedef" },
+          "correct": "B",
+          "tip": "struct is the C keyword for defining a structure. class is used in C++. typedef creates a type alias."
+        },
+        {
+          "id": "Q7_8",
+          "question": "What is the output of: int a[3]={10,20,30}; printf(\"%d\", a[1]);",
+          "year": "Repeated",
+          "options": { "A": "10", "B": "20", "C": "30", "D": "Error" },
+          "correct": "B",
+          "tip": "a[0]=10, a[1]=20, a[2]=30. Array index starts at 0 in C, so a[1] = 20."
+        },
+        {
+          "id": "Q7_9",
+          "question": "In C programming, which of the following represents an operand?",
+          "year": "Sample",
+          "options": { "A": "operand", "B": "operation", "C": "operator", "D": "None of the above" },
+          "correct": "A",
+          "tip": "In an expression like a + b: 'a' and 'b' are operands, '+' is the operator. Operands are the values being operated on."
+        }
+      ]
+    },
+    {
+      "qNum": 8,
+      "chapter": "Object-Oriented Programming",
+      "questions": [
+        {
+          "id": "Q8_1",
+          "question": "In which of the following programming is the emphasis given on data rather than on procedures?",
+          "year": "2082",
+          "options": { "A": "Procedural programming", "B": "Structural programming", "C": "Object-oriented programming", "D": "Functional programming" },
+          "correct": "C",
+          "tip": "OOP gives emphasis on DATA (objects/classes) rather than procedures/functions. This is a core principle: data and behavior are bundled together inside a class."
+        },
+        {
+          "id": "Q8_2",
+          "question": "In which paradigm are programs written as a collection of classes and objects?",
+          "year": "Sample",
+          "options": { "A": "Procedural Paradigm", "B": "Structural Paradigm", "C": "Functional Paradigm", "D": "Object-Oriented Paradigm" },
+          "correct": "D",
+          "tip": "OOP organizes programs as interacting objects. Examples of OOP languages: Java, C++, Python."
+        },
+        {
+          "id": "Q8_3",
+          "question": "Which OOP concept bundles data and methods together and hides internal details?",
+          "year": "Repeated",
+          "options": { "A": "Inheritance", "B": "Polymorphism", "C": "Abstraction", "D": "Encapsulation" },
+          "correct": "D",
+          "tip": "Encapsulation = wrapping data + methods inside a class and controlling access with private/public/protected."
+        },
+        {
+          "id": "Q8_4",
+          "question": "Which OOP concept allows a class to acquire properties of another class?",
+          "year": "Repeated",
+          "options": { "A": "Encapsulation", "B": "Polymorphism", "C": "Method Overloading", "D": "Inheritance" },
+          "correct": "D",
+          "tip": "Inheritance = child class reuses parent class properties and methods. Example: class Dog extends Animal."
+        },
+        {
+          "id": "Q8_5",
+          "question": "What is a CLASS in OOP?",
+          "year": "Repeated",
+          "options": { "A": "Instance of an object", "B": "Built-in function", "C": "A variable", "D": "Blueprint or template for objects" },
+          "correct": "D",
+          "tip": "Class = blueprint/template. Object = instance created from class. Example: Car is the class; myHonda is an object."
+        },
+        {
+          "id": "Q8_6",
+          "question": "Which OOP concept means same method name behaves differently in different contexts?",
+          "year": "Repeated",
+          "options": { "A": "Inheritance", "B": "Encapsulation", "C": "Polymorphism", "D": "Abstraction" },
+          "correct": "C",
+          "tip": "Polymorphism = many forms. Types: Overloading (same name, different parameters) and Overriding (redefine in child class)."
+        },
+        {
+          "id": "Q8_7",
+          "question": "Which OOP concept shows only essential features and hides implementation complexity?",
+          "year": "Repeated",
+          "options": { "A": "Inheritance", "B": "Encapsulation", "C": "Polymorphism", "D": "Abstraction" },
+          "correct": "D",
+          "tip": "Abstraction = hiding complexity, showing only what is needed. Example: car remote (press button without knowing internals)."
+        },
+        {
+          "id": "Q8_8",
+          "question": "Which statement about OOP is INCORRECT?",
+          "year": "Sample",
+          "options": { "A": "Emphasis is on data rather than procedure", "B": "Data is hidden and cannot be accessed by outside", "C": "Objects communicate through functions", "D": "It supports abstract data but not the class" },
+          "correct": "D",
+          "tip": "OOP is fundamentally based on classes — they are its core unit. Statement D is incorrect."
+        },
+        {
+          "id": "Q8_9",
+          "question": "In inheritance, the class that inherits properties is called?",
+          "year": "Sample",
+          "options": { "A": "Superclass", "B": "Subclass", "C": "Subsetclass", "D": "Relativeclass" },
+          "correct": "B",
+          "tip": "Subclass = child or derived class (the one that inherits). Superclass = parent or base class (the one being inherited from)."
+        }
+      ]
+    },
+    {
+      "qNum": 9,
+      "chapter": "SDLC and Recent Trends in Technology",
+      "questions": [
+        {
+          "id": "Q9_1",
+          "question": "Which of the following is NOT a type of cloud computing service?",
+          "year": "2082",
+          "options": { "A": "Infrastructure as a Service (IaaS)", "B": "Platform as a Service (PaaS)", "C": "Software as a Service (SaaS)", "D": "Hardware as a Service (HaaS)" },
+          "correct": "D",
+          "tip": "Real cloud service types: IaaS (AWS EC2), PaaS (Google App Engine), SaaS (Gmail). HaaS is NOT a standard cloud category."
+        },
+        {
+          "id": "Q9_2",
+          "question": "The four Vs that best define Big Data are:",
+          "year": "2080 GIE",
+          "options": { "A": "Vacant-Victim-Volume-Validity", "B": "Validity-Velocity-Veracity-Volume", "C": "Volume-Velocity-Variety-Veracity", "D": "Varsity-Velocity-Volume-Validity" },
+          "correct": "C",
+          "tip": "Big Data 4Vs: Volume (size of data), Velocity (speed), Variety (types of data), Veracity (accuracy/quality)."
+        },
+        {
+          "id": "Q9_3",
+          "question": "Which type of feasibility study evaluates whether a system can be developed with the available technology?",
+          "year": "2082",
+          "options": { "A": "Operational feasibility", "B": "Social feasibility", "C": "Technical feasibility", "D": "Economical feasibility" },
+          "correct": "C",
+          "tip": "Technical feasibility = can we build it with available hardware and software? Economic = cost vs benefit. Operational = will users use it?"
+        },
+        {
+          "id": "Q9_4",
+          "question": "Which model of SDLC is characterized by a linear progression of phases from requirements gathering to maintenance?",
+          "year": "2081",
+          "options": { "A": "Waterfall model", "B": "Agile model", "C": "Spiral model", "D": "RAD model" },
+          "correct": "A",
+          "tip": "Waterfall = sequential/linear — each phase completes before the next begins. Agile = iterative. Spiral = risk-driven. RAD = rapid prototyping."
+        },
+        {
+          "id": "Q9_5",
+          "question": "What software development approach should a company use if they want to consider the input of users in the development process?",
+          "year": "2079 GIE Set B",
+          "options": { "A": "RAD", "B": "Agile", "C": "Waterfall", "D": "Prototype" },
+          "correct": "B",
+          "tip": "Agile involves continuous user feedback through iterative sprints. Waterfall does not involve users after the requirement phase."
+        },
+        {
+          "id": "Q9_6",
+          "question": "Conducting feasibility analysis is done in which phase of SDLC?",
+          "year": "2080 GIE Set A",
+          "options": { "A": "Planning", "B": "Analysis", "C": "Design", "D": "Implementation" },
+          "correct": "A",
+          "tip": "Feasibility study (economic, technical, operational) is conducted during the Planning phase — before any development begins."
+        },
+        {
+          "id": "Q9_7",
+          "question": "Which is an example of an AI application?",
+          "year": "Repeated",
+          "options": { "A": "Compiler", "B": "Spreadsheet", "C": "Word Processor", "D": "Expert System" },
+          "correct": "D",
+          "tip": "AI applications: Expert Systems, Robotics, NLP (chatbots), Image Recognition, Machine Learning. A compiler is NOT AI."
+        },
+        {
+          "id": "Q9_8",
+          "question": "What does the term 'QA' stand for in the software development process?",
+          "year": "2080 GIE Set B",
+          "options": { "A": "Quality Assurance", "B": "Quality Analysis", "C": "Quality Assessment", "D": "Quantity Assurance" },
+          "correct": "A",
+          "tip": "QA = Quality Assurance. It is the process of ensuring software meets defined quality standards throughout development — not just at the end."
+        },
+        {
+          "id": "Q9_9",
+          "question": "Which SDLC phase is used to ensure quality software?",
+          "year": "2080",
+          "options": { "A": "Implementation", "B": "Maintenance", "C": "Testing", "D": "System Study" },
+          "correct": "C",
+          "tip": "Testing phase checks software for bugs and verifies it meets requirements. It ensures quality before deployment to end users."
+        }
+      ]
+    }
+  ],
+
+  "SAQ": [
+    {
+      "slot": "Q10",
+      "chapter": "DBMS",
+      "type": "SAQ",
+      "marks": 5,
+      "options": [
+        {
+          "id": "Q10_A",
+          "question": "Explain 2NF and 3NF with examples. [5]",
+          "year": "2082, 2081, 2077, 2075",
+          "importance": 3,
+          "answer": [
+            { "type": "subheading", "text": "2NF — Second Normal Form" },
+            { "type": "paragraph", "text": "A table is in 2NF if it is already in 1NF AND every non-key attribute is FULLY dependent on the entire primary key. It removes partial dependency — where a non-key attribute depends on only part of a composite primary key." },
+            { "type": "subheading", "text": "Example — Before 2NF (has partial dependency)" },
+            { "type": "paragraph", "text": "Table: Enrollment(RollNo, SubjectID, StudentName, Marks)\nPrimary Key = (RollNo + SubjectID) combined\nProblem: StudentName depends only on RollNo, not on the full key. This is partial dependency." },
+            { "type": "subheading", "text": "After 2NF — Split into two tables to remove partial dependency" },
+            { "type": "list", "items": ["Student(RollNo, StudentName) — StudentName fully depends on RollNo", "Enrollment(RollNo, SubjectID, Marks) — Marks depends on the full combined key"] },
+            { "type": "subheading", "text": "3NF — Third Normal Form" },
+            { "type": "paragraph", "text": "A table is in 3NF if it is already in 2NF AND no non-key attribute is transitively dependent on the primary key. It removes transitive dependency — where a non-key attribute depends on another non-key attribute." },
+            { "type": "subheading", "text": "Example — Before 3NF (has transitive dependency)" },
+            { "type": "paragraph", "text": "Table: Employee(EmpID, DeptID, DeptName)\nPrimary Key = EmpID\nProblem: DeptName depends on DeptID, not directly on EmpID. The chain is: EmpID => DeptID => DeptName. This is transitive dependency." },
+            { "type": "subheading", "text": "After 3NF — Split into two tables to remove transitive dependency" },
+            { "type": "list", "items": ["Employee(EmpID, DeptID) — EmpID is primary key", "Department(DeptID, DeptName) — DeptID is primary key"] }
+          ]
+        },
+        {
+          "id": "Q10_B",
+          "question": "Demonstrate the basic DML statements with examples. [5]",
+          "year": "2082, 2076",
+          "importance": 3,
+          "answer": [
+            { "type": "paragraph", "text": "DML stands for Data Manipulation Language. It consists of SQL commands used to insert, retrieve, modify, and delete the data stored inside database tables." },
+            { "type": "subheading", "text": "1. SELECT — Retrieve data from a table" },
+            { "type": "code", "lang": "sql", "content": "SELECT * FROM Student WHERE Marks > 40;" },
+            { "type": "subheading", "text": "2. INSERT — Add new records into a table" },
+            { "type": "code", "lang": "sql", "content": "INSERT INTO Student (ID, Name, Marks) VALUES (1, 'Ram', 75);" },
+            { "type": "subheading", "text": "3. UPDATE — Modify existing records" },
+            { "type": "code", "lang": "sql", "content": "UPDATE Student SET Marks = 80 WHERE ID = 1;" },
+            { "type": "subheading", "text": "4. DELETE — Remove specific records" },
+            { "type": "code", "lang": "sql", "content": "DELETE FROM Student WHERE Marks < 32;" }
+          ]
+        },
+        {
+          "id": "Q10_C",
+          "question": "Write any three differences between DDL and DML with examples. [3+2]",
+          "year": "2082",
+          "importance": 2,
+          "answer": [
+            { "type": "paragraph", "text": "DDL stands for Data Definition Language and DML stands for Data Manipulation Language. Both are subsets of SQL but serve different purposes." },
+            {
+              "type": "table",
+              "headers": ["Basis", "DDL — Data Definition Language", "DML — Data Manipulation Language"],
+              "rows": [
+                ["Full Form", "Data Definition Language", "Data Manipulation Language"],
+                ["Purpose", "Defines or changes the structure of database objects", "Manipulates the actual data stored inside tables"],
+                ["Commands", "CREATE, ALTER, DROP, TRUNCATE", "SELECT, INSERT, UPDATE, DELETE"],
+                ["Rollback", "Cannot be rolled back — changes are permanent (auto-commit)", "Can be rolled back using ROLLBACK inside a transaction"],
+                ["Example", "CREATE TABLE Student (ID INT, Name VARCHAR(30));", "INSERT INTO Student VALUES (1, 'Ram');"]
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slot": "Q11",
+      "chapter": "Web Technology — JavaScript or PHP",
+      "type": "SAQ",
+      "marks": 5,
+      "options": [
+        {
+          "id": "Q11_A",
+          "question": "Write a function in JavaScript to add any two numbers. [5]",
+          "year": "2082",
+          "importance": 3,
+          "answer": [
+            { "type": "paragraph", "text": "The following JavaScript program defines a function that takes two numbers from the user using prompt() and displays their sum using document.write()." },
+            { "type": "code", "lang": "html", "content": "&lt;script&gt;\nfunction addNumbers() {\n    var a = parseFloat(prompt(\"Enter first number:\"));\n    var b = parseFloat(prompt(\"Enter second number:\"));\n    var sum = a + b;\n    document.write(\"Sum of \" + a + \" and \" + b + \" = \" + sum);\n}\naddNumbers();\n&lt;/script&gt;" },
+            { "type": "paragraph", "text": "Note: prompt() always returns a string value. parseFloat() converts the string to a decimal number before addition. Without parseFloat(), JavaScript would concatenate the two strings instead of adding them as numbers numerically (e.g. '5'+'3' = '53' instead of 8)." },
+            { "type": "subheading", "text": "Key Points for Marks" },
+            { "type": "list", "items": [
+              "function keyword defines a reusable block of code",
+              "prompt() takes user input as a string",
+              "parseFloat() converts string to number before arithmetic",
+              "document.write() outputs the result to the webpage",
+              "The function is called by its name: addNumbers();"
+            ]}
+          ]
+        },
+        {
+          "id": "Q11_B",
+          "question": "Write JavaScript code to input any three numbers and find the smallest number among them. [5]",
+          "year": "2082",
+          "importance": 3,
+          "answer": [
+            { "type": "paragraph", "text": "The following JavaScript program takes three numbers from the user and finds the smallest one using if-else conditions." },
+            { "type": "code", "lang": "html", "content": "&lt;script&gt;\nvar a = parseFloat(prompt(\"Enter first number:\"));\nvar b = parseFloat(prompt(\"Enter second number:\"));\nvar c = parseFloat(prompt(\"Enter third number:\"));\nvar smallest;\n\nif (a < b && a < c) {\n    smallest = a;\n} else if (b < a && b < c) {\n    smallest = b;\n} else {\n    smallest = c;\n}\n\ndocument.write(\"The smallest number is: \" + smallest);\n&lt;/script&gt;" },
+            { "type": "paragraph", "text": "The program compares all three numbers using logical AND (&&) operator. If the first condition is true, a is smallest. If second is true, b is smallest. Otherwise c is the smallest." }
+          ]
+        },
+        {
+          "id": "Q11_C",
+          "question": "How can you connect a database with PHP? Demonstrate with an example. [5]",
+          "year": "2080",
+          "importance": 3,
+          "answer": [
+            { "type": "paragraph", "text": "PHP uses the mysqli_connect() function to connect to a MySQL database. The complete steps are: connect to database, check connection, run SQL query, display results, and close connection." },
+            { "type": "code", "lang": "php", "content": "<?php\n// Step 1: Connect to the database\n$conn = mysqli_connect(\"localhost\", \"root\", \"\", \"school\");\n\n// Step 2: Check if connection was successful\nif (!$conn) {\n    die(\"Connection failed: \" . mysqli_connect_error());\n}\n\n// Step 3: Write and run a SQL query\n$sql = \"SELECT * FROM Student\";\n$result = mysqli_query($conn, $sql);\n\n// Step 4: Display results row by row\nwhile ($row = mysqli_fetch_array($result)) {\n    echo $row['Name'] . \" - \" . $row['Marks'] . \"<br>\";\n}\n\n// Step 5: Close the connection\nmysqli_close($conn);\n?>" },
+            { "type": "numbered_list", "items": ["mysqli_connect(host, user, password, database) — establishes the connection to MySQL", "mysqli_query($conn, $sql) — executes the SQL statement on the database", "mysqli_fetch_array($result) — fetches each returned row as an array one by one", "mysqli_close($conn) — properly closes the database connection when done"] }
+          ]
+        },
+        {
+          "id": "Q11_D",
+          "question": "Write a PHP script to connect to a MySQL database. [5]",
+          "year": "2079 Model",
+          "importance": 2,
+          "answer": [
+            { "type": "paragraph", "text": "The following PHP script demonstrates a complete database connection using the mysqli extension." },
+            { "type": "code", "lang": "php", "content": "<?php\n$host     = \"localhost\";\n$user     = \"root\";\n$password = \"\";\n$database = \"school\";\n\n// Create connection\n$conn = mysqli_connect($host, $user, $password, $database);\n\n// Check connection\nif (!$conn) {\n    die(\"Connection failed: \" . mysqli_connect_error());\n} else {\n    echo \"Connected successfully to the database!\";\n}\n\n// Close connection\nmysqli_close($conn);\n?>" },
+            { "type": "paragraph", "text": "The four parameters passed to mysqli_connect() are: hostname (usually localhost), username (usually root for local), password (empty for local XAMPP), and the database name to connect to." }
+          ]
+        },
+        {
+          "id": "Q11_E",
+          "question": "Demonstrate external CSS implemented in a web page. [5]",
+          "year": "2082 OR",
+          "importance": 2,
+          "answer": [
+            { "type": "paragraph", "text": "External CSS means writing CSS rules in a separate .css file and linking it to an HTML page using the link tag inside the head section. This is best practice as one stylesheet can style many HTML pages." },
+            { "type": "subheading", "text": "File 1: style.css — The separate CSS file" },
+            { "type": "code", "lang": "css", "content": "body {\n    background-color: lightblue;\n}\nh1 {\n    color: darkblue;\n    font-size: 24px;\n}\np {\n    font-family: Arial;\n    font-size: 14px;\n}" },
+            { "type": "subheading", "text": "File 2: index.html — The HTML file that links to style.css" },
+            { "type": "code", "lang": "html", "content": "&lt;html&gt;\n&lt;head&gt;\n    &lt;link rel=\"stylesheet\" href=\"style.css\"&gt;\n&lt;/head&gt;\n&lt;body&gt;\n    &lt;h1&gt;Welcome to NEB&lt;/h1&gt;\n    &lt;p&gt;This is an external CSS example.&lt;/p&gt;\n&lt;/body&gt;\n&lt;/html&gt;" },
+            { "type": "subheading", "text": "Advantages of External CSS" },
+            { "type": "list", "items": ["One CSS file can be reused across many HTML pages", "Keeps HTML code clean and separated from presentation logic", "Easier to maintain — change styles in one place and it reflects everywhere", "Reduces individual HTML file size and improves page load speed"] }
+          ]
+        }
+      ]
+    },
+    {
+      "slot": "Q12",
+      "chapter": "Object-Oriented Programming",
+      "type": "SAQ",
+      "marks": 5,
+      "options": [
+        {
+          "id": "Q12_A",
+          "question": "Describe any five features of OOP. [5]",
+          "year": "2082, 2081, 2079",
+          "importance": 3,
+          "answer": [
+            { "type": "paragraph", "text": "OOP stands for Object-Oriented Programming. It is a programming paradigm that organizes software design around data and objects rather than functions and procedures. The five main features are:" },
+            { "type": "numbered_list", "items": [
+              "Class and Object: A class is a blueprint or template that defines attributes and behaviors. An object is a real instance created from a class. For example, Student is a class and Ram (roll=5, marks=78) is an object.",
+              "Encapsulation: Wrapping data (variables) and methods (functions) together inside a single class. Access to data is controlled using access modifiers: private (only inside class), public (accessible anywhere), and protected (accessible in class and subclasses).",
+              "Inheritance: A child class (subclass) inherits the properties and methods of a parent class (superclass). This avoids writing the same code again and promotes code reusability. Example: class Dog extends Animal.",
+              "Polymorphism: The ability of a method to behave differently based on context. Method Overloading means same method name with different parameters. Method Overriding means redefining a parent class method in the child class.",
+              "Abstraction: Hiding the internal complexity of a system and exposing only the essential features to the user. For example, when driving a car, you use the steering wheel without knowing how the internal engine mechanism works."
+            ]}
+          ]
+        },
+        {
+          "id": "Q12_B",
+          "question": "Write short notes on class and inheritance in OOP with examples. [5]",
+          "year": "2082",
+          "importance": 3,
+          "answer": [
+            { "type": "subheading", "text": "Class in OOP" },
+            { "type": "paragraph", "text": "A class is a user-defined blueprint or template that defines the attributes (data) and methods (behavior) that objects of that type will have. A class by itself does not occupy memory — only objects (instances) do." },
+            { "type": "paragraph", "text": "Example: A class named Student can have attributes like roll, name, marks and a method called display() that prints the details." },
+            { "type": "subheading", "text": "Inheritance in OOP" },
+            { "type": "paragraph", "text": "Inheritance is an OOP feature that allows a child class (derived class) to acquire the properties and methods of a parent class (base class). It promotes code reusability and establishes an IS-A relationship." },
+            { "type": "subheading", "text": "Types of Inheritance" },
+            { "type": "numbered_list", "items": [
+              "Single Inheritance: One child inherits from one parent. Example: class Dog extends Animal.",
+              "Multiple Inheritance: One child inherits from more than one parent. Example: class FlyingCar extends Car, Airplane.",
+              "Multilevel Inheritance: Chain of inheritance. Example: Animal => Mammal => Dog.",
+              "Hierarchical Inheritance: Multiple children from one parent. Example: Animal => Dog, Cat, Horse.",
+              "Hybrid Inheritance: Combination of two or more types of inheritance."
+            ]}
+          ]
+        },
+        {
+          "id": "Q12_C",
+          "question": "Differentiate between Procedural Programming and Object-Oriented Programming. [5]",
+          "year": "2079 Model",
+          "importance": 2,
+          "answer": [
+            { "type": "paragraph", "text": "Procedural Programming and Object-Oriented Programming (OOP) are two different programming paradigms. Their key differences are shown below." },
+            {
+              "type": "table",
+              "headers": ["Basis", "Procedural Programming", "Object-Oriented Programming"],
+              "rows": [
+                ["Approach", "Top-down approach", "Bottom-up approach"],
+                ["Main Building Block", "Functions and procedures", "Classes and objects"],
+                ["Data Security", "Data is not secure — accessible globally", "Data is secure via encapsulation (private/public)"],
+                ["Code Reusability", "Less reuse — only functions can be reused", "High reuse through inheritance and polymorphism"],
+                ["Data and Functions", "Data and functions are separate entities", "Data and methods are bundled inside a class"],
+                ["Problem Approach", "Problem divided into functions/steps", "Problem modeled as real-world objects"],
+                ["Example Languages", "C, Pascal, FORTRAN", "C++, Java, Python"]
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slot": "Q13",
+      "chapter": "Software Process Model / SDLC",
+      "type": "SAQ",
+      "marks": 5,
+      "options": [
+        {
+          "id": "Q13_A",
+          "question": "What are the different stages of software planning? Describe. [5]",
+          "year": "2082, 2081, 2079",
+          "importance": 3,
+          "answer": [
+            { "type": "paragraph", "text": "SDLC stands for Software Development Life Cycle. It is a structured process used to plan, create, test, and deliver software systems efficiently. The stages are:" },
+            { "type": "numbered_list", "items": [
+              "Planning: Define the project scope, objectives, feasibility study (economic, technical, operational), cost estimation, resource allocation, and scheduling. This is the foundation of the entire project.",
+              "Requirement Analysis: Gather and document what the system must do by interviewing users, distributing questionnaires, observing current workflows, and studying existing documents and records.",
+              "System Design: Create the overall system architecture, database schema, user interface layout, and module design based on the collected requirements. Output is a design specification document.",
+              "Coding / Implementation: Developers write the actual source code in the chosen programming language (such as C, Java, or PHP) based on the design documents and specifications.",
+              "Testing: Verify that the software works correctly and meets all requirements. Types include Unit Testing (individual modules), Integration Testing, System Testing, and User Acceptance Testing (UAT).",
+              "Deployment and Maintenance: Release the finished software to end users. After deployment, continuously fix reported bugs, update features, and improve the system based on user feedback."
+            ]}
+          ]
+        },
+        {
+          "id": "Q13_B",
+          "question": "What is requirement gathering? Explain its different methods. [2+3]",
+          "year": "2082",
+          "importance": 3,
+          "answer": [
+            { "type": "paragraph", "text": "Requirement Gathering is the process of collecting and documenting what a software system must do by communicating with clients, end users, and stakeholders. It is the most critical phase of SDLC because errors made here will affect every later stage of development." },
+            { "type": "subheading", "text": "Methods of Requirement Gathering" },
+            { "type": "numbered_list", "items": [
+              "Interview: Direct one-on-one or group discussions with stakeholders such as clients, managers, and end users. The analyst asks questions to understand their needs, problems, and expectations from the new system.",
+              "Questionnaire / Survey: A written set of questions distributed to many users at the same time. It is efficient for large organizations where individual interviews are not possible for every user.",
+              "Observation: The system analyst physically watches users performing their daily tasks in the current system. This helps identify actual workflows, bottlenecks, and undocumented processes not mentioned during interviews.",
+              "Document Analysis: Studying existing manuals, forms, reports, ledgers, and records of the current system. This helps understand existing data flow, input-output formats, and system limitations.",
+              "Prototyping: Building a rough working model of the proposed system and presenting it to users to collect feedback. Requirements are then refined and corrected before full-scale development begins."
+            ]}
+          ]
+        },
+        {
+          "id": "Q13_C",
+          "question": "What is testing? Differentiate between Black Box and White Box testing. [2+3]",
+          "year": "Repeated",
+          "importance": 2,
+          "answer": [
+            { "type": "paragraph", "text": "Software Testing is the process of evaluating a software system to identify errors, bugs, and gaps between the expected output and actual output. The goal is to ensure quality and correctness before the software is released to users." },
+            {
+              "type": "table",
+              "headers": ["Basis", "Black Box Testing", "White Box Testing"],
+              "rows": [
+                ["Knowledge of code", "Tester has NO knowledge of the internal source code", "Tester has FULL knowledge of the internal source code"],
+                ["Focus", "Tests input-output behavior and overall functionality", "Tests internal logic, code paths, loops, and branches"],
+                ["Done by", "End users and quality assurance (QA) testers", "Developers and programmers"],
+                ["Also called", "Functional testing or Closed box testing", "Structural testing or Glass box testing"],
+                ["Example", "Submit a login form and verify if correct response is shown", "Trace every if-else branch in the code for all possible conditions"]
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slot": "Q14",
+      "chapter": "Recent Trends in Technology",
+      "type": "SAQ",
+      "marks": 5,
+      "options": [
+        {
+          "id": "Q14_A",
+          "question": "Define the concept of AI and IoT. [2+3]",
+          "year": "2082, 2077, 2076",
+          "importance": 3,
+          "answer": [
+            { "type": "subheading", "text": "Artificial Intelligence (AI)" },
+            { "type": "paragraph", "text": "Artificial Intelligence (AI) is the simulation of human intelligence processes by computer systems. It includes the ability to learn from data, reason logically, solve problems, understand natural language, and make decisions. AI systems are designed to perform tasks that normally require human intelligence." },
+            { "type": "subheading", "text": "Applications of AI" },
+            { "type": "list", "items": [
+              "Expert Systems — software that mimics human expert decisions, used in medical diagnosis",
+              "Natural Language Processing (NLP) — chatbots, voice assistants like Siri, Google Translate",
+              "Robotics — industrial robots in car factories, surgical robots in hospitals",
+              "Image Recognition — face unlock on smartphones, CCTV surveillance analysis",
+              "Machine Learning — Netflix and YouTube recommendation systems"
+            ]},
+            { "type": "subheading", "text": "Internet of Things (IoT)" },
+            { "type": "paragraph", "text": "Internet of Things (IoT) refers to the network of physical devices, appliances, and vehicles embedded with sensors, software, and internet connectivity that allows them to collect and exchange data with each other and with users remotely." },
+            { "type": "subheading", "text": "Applications of IoT" },
+            { "type": "list", "items": [
+              "Smart Home — control lights, fans, door locks, and security cameras via smartphone",
+              "Wearable Health Monitors — fitness bands that track heart rate, steps, and sleep",
+              "Smart Agriculture — automated irrigation systems triggered by soil moisture sensors",
+              "Smart City Traffic Management — sensors adjust traffic lights based on real-time vehicle density",
+              "Industrial IoT — monitoring factory machinery to predict failures before they happen"
+            ]}
+          ]
+        },
+        {
+          "id": "Q14_B",
+          "question": "What is E-governance? Explain its objectives. [2+3]",
+          "year": "2072, 2071, 2070, 2069",
+          "importance": 3,
+          "answer": [
+            { "type": "paragraph", "text": "E-governance (Electronic Governance) is the use of Information and Communication Technology (ICT) by government agencies to deliver public services, information, and communication to citizens, businesses, and other government departments digitally through the internet and other digital channels." },
+            { "type": "subheading", "text": "Objectives of E-governance" },
+            { "type": "numbered_list", "items": [
+              "Improve Service Delivery: Citizens can access government services such as passport, voter ID, tax payment, and driving license online at any time without visiting government offices physically.",
+              "Transparency: Government operations, budgets, and processes are made publicly visible online so citizens can monitor activities, track their applications, and hold officials accountable.",
+              "Reduce Corruption: By removing human middlemen from many bureaucratic processes, e-governance minimizes opportunities for bribery, favoritism, and manipulation of government records.",
+              "Cost and Time Savings: Reduces paperwork, manual processing time, and operational costs for both the government and the citizens who previously had to travel and wait in long queues.",
+              "Citizen Empowerment: Gives citizens easy access to government information and allows them to participate in governance through digital platforms, online feedback portals, and e-voting systems."
+            ]}
+          ]
+        },
+        {
+          "id": "Q14_C",
+          "question": "Explain the advantages and disadvantages of Cloud Computing. [5]",
+          "year": "2081, 2079",
+          "importance": 2,
+          "answer": [
+            { "type": "paragraph", "text": "Cloud Computing is the delivery of computing services — including servers, storage, databases, networking, software, and analytics — over the internet on a pay-as-you-go basis. The three main service models are IaaS (Infrastructure as a Service), PaaS (Platform as a Service), and SaaS (Software as a Service)." },
+            {
+              "type": "table",
+              "headers": ["Advantages", "Disadvantages"],
+              "rows": [
+                ["Cost-efficient — pay only for what you actually use, no upfront hardware cost", "Requires a stable and fast internet connection to access services"],
+                ["Accessible from anywhere in the world on any device with internet", "Security and privacy concerns — data is stored on third-party servers"],
+                ["Scalable — easily increase or decrease computing resources as needed", "Vendor lock-in risk — moving data from one provider to another is difficult"],
+                ["Automatic software updates and system maintenance handled by the provider", "Possible downtime — if the cloud provider has outages, your services are affected"],
+                ["No need to invest in, manage, or maintain physical hardware and servers", "Less direct control — the organization does not fully control where its data is stored"]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "Q14_D",
+          "question": "What is E-commerce? List out the advantages of E-commerce. [1+4]",
+          "year": "2075 Set B, 2066 Supp",
+          "importance": 2,
+          "answer": [
+            { "type": "paragraph", "text": "E-commerce (Electronic Commerce) is the buying and selling of goods and services over the internet using electronic means such as websites, mobile apps, and online payment systems. Examples include Amazon, Daraz, and eSewa." },
+            { "type": "subheading", "text": "Advantages of E-commerce" },
+            { "type": "numbered_list", "items": [
+              "Available 24/7: Online stores are open all day and all night, allowing customers to shop at any time from any place.",
+              "Global Reach: Businesses can sell products to customers anywhere in the world without opening physical stores in each location.",
+              "Lower Operational Cost: No need to rent physical shop space, hire large staff, or maintain a physical storefront.",
+              "Convenience: Customers can compare prices, read reviews, and purchase products without leaving their home.",
+              "Fast Transactions: Orders can be placed and payments processed within minutes using digital payment methods like eSewa, debit cards, and internet banking."
+            ]}
+          ]
+        }
+      ]
+    }
+  ],
+
+  "LAQ": [
+    {
+      "slot": "Q15",
+      "chapter": "Data Communication and Networking",
+      "type": "LAQ",
+      "marks": 8,
+      "options": [
+        {
+          "id": "Q15_A",
+          "question": "What is transmission medium? Explain its major types with advantages and disadvantages. [2+6]",
+          "year": "2082",
+          "importance": 3,
+          "answer": [
+            { "type": "paragraph", "text": "Transmission medium is the physical or wireless path or channel through which data signals travel from the sender to the receiver in a computer network. It is broadly classified into two types: Guided (Wired) Media and Unguided (Wireless) Media." },
+            { "type": "subheading", "text": "A. GUIDED (WIRED) MEDIA" },
+            { "type": "subheading", "text": "1. Twisted Pair Cable (UTP / STP)" },
+            { "type": "paragraph", "text": "Two copper wires twisted together to reduce electromagnetic interference. Most commonly used medium in Local Area Networks. Types include UTP (Unshielded Twisted Pair) Cat5e, Cat6 and STP (Shielded Twisted Pair)." },
+            {
+              "type": "table",
+              "headers": ["Advantages", "Disadvantages"],
+              "rows": [
+                ["Cheapest and most affordable medium", "Limited bandwidth compared to fiber optic"],
+                ["Easy to install and flexible", "Susceptible to electromagnetic interference (EMI)"],
+                ["Widely available everywhere", "Shorter distance without repeaters (max ~100m for Cat6)"]
+              ]
+            },
+            { "type": "subheading", "text": "2. Coaxial Cable" },
+            { "type": "paragraph", "text": "A central copper conductor surrounded by insulating layer, metallic shield, and outer plastic jacket. Used in cable television networks and older Ethernet networks." },
+            {
+              "type": "table",
+              "headers": ["Advantages", "Disadvantages"],
+              "rows": [
+                ["Better noise shielding than twisted pair", "More expensive than twisted pair cable"],
+                ["Higher bandwidth than twisted pair", "Bulky and harder to install in tight spaces"],
+                ["Can carry signal over longer distances", "Being replaced by fiber optic in modern networks"]
+              ]
+            },
+            { "type": "subheading", "text": "3. Fiber Optic Cable" },
+            { "type": "paragraph", "text": "Transmits data as pulses of light through thin glass or plastic fiber. It is the fastest and most reliable wired transmission medium available today." },
+            {
+              "type": "table",
+              "headers": ["Advantages", "Disadvantages"],
+              "rows": [
+                ["Extremely high bandwidth and data transfer speed", "Very expensive to purchase and install"],
+                ["Completely immune to electromagnetic interference (EMI)", "Fragile — can break if bent sharply"],
+                ["Can transmit over very long distances with no signal loss", "Requires skilled technicians to splice and repair"]
+              ]
+            },
+            { "type": "subheading", "text": "B. UNGUIDED (WIRELESS) MEDIA" },
+            { "type": "subheading", "text": "4. Radio Waves" },
+            { "type": "paragraph", "text": "Electromagnetic waves used in Wi-Fi, Bluetooth, AM/FM radio, and mobile networks. Can penetrate walls and travel in all directions. Frequency range: 3 KHz to 1 GHz." },
+            {
+              "type": "table",
+              "headers": ["Advantages", "Disadvantages"],
+              "rows": [
+                ["No cables needed — easy and quick to set up", "Susceptible to interference from other devices"],
+                ["Wide coverage area for the cost", "Security risk — signals can be intercepted"],
+                ["Can penetrate through walls and obstacles", "Limited bandwidth compared to wired media"]
+              ]
+            },
+            { "type": "subheading", "text": "5. Microwave" },
+            { "type": "paragraph", "text": "High-frequency radio waves used for long-distance point-to-point communication links. Requires line-of-sight between transmitting and receiving towers. Used in telephone relay systems and TV broadcasting." },
+            {
+              "type": "table",
+              "headers": ["Advantages", "Disadvantages"],
+              "rows": [
+                ["High bandwidth suitable for telephone and TV relay", "Requires unobstructed line-of-sight between towers"],
+                ["No need to lay physical cables across terrain", "Signal quality affected by rain, fog, and weather"]
+              ]
+            },
+            { "type": "subheading", "text": "6. Satellite Communication" },
+            { "type": "paragraph", "text": "Uses geostationary satellites orbiting at 36,000 km altitude for very long-distance global communication. Used in GPS navigation, VSAT internet, and satellite television." },
+            {
+              "type": "table",
+              "headers": ["Advantages", "Disadvantages"],
+              "rows": [
+                ["Global coverage including remote and rural areas", "High latency (signal delay of approximately 270ms)"],
+                ["Can cover areas where no ground cables exist", "Very expensive to launch and maintain satellites"]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "Q15_B",
+          "question": "Explain the 7 layers of the OSI model with their functions and examples. [8]",
+          "year": "2081, Repeated",
+          "importance": 3,
+          "answer": [
+            { "type": "paragraph", "text": "The OSI Model (Open System Interconnection) is a 7-layer conceptual framework developed by ISO that standardizes how different computer network systems communicate with each other regardless of their underlying technology." },
+            { "type": "paragraph", "text": "Memory trick to remember layers from top to bottom: All People Seem To Need Data Processing (Application, Presentation, Session, Transport, Network, Data Link, Physical)" },
+            {
+              "type": "table",
+              "headers": ["Layer No.", "Layer Name", "Key Function", "Example Protocol or Device"],
+              "rows": [
+                ["7", "Application", "Provides network services directly to user applications", "HTTP, FTP, SMTP, DNS, Telnet"],
+                ["6", "Presentation", "Data format translation, encryption, and compression", "SSL/TLS, JPEG, MPEG, ASCII, Unicode"],
+                ["5", "Session", "Establishes, manages, and terminates communication sessions", "NetBIOS, PPTP, RPC"],
+                ["4", "Transport", "End-to-end delivery, error control, flow control, and data segmentation", "TCP (reliable), UDP (fast)"],
+                ["3", "Network", "Logical addressing using IP and routing packets between different networks", "IP, ICMP, Router"],
+                ["2", "Data Link", "Physical addressing using MAC address and error detection within a network segment", "Ethernet, Switch, Bridge, MAC address"],
+                ["1", "Physical", "Transmits raw binary bits (0s and 1s) over the physical medium", "Cables, Hub, NIC, Repeater, Wi-Fi signal"]
+              ]
+            },
+            { "type": "paragraph", "text": "Data travels DOWN the layers from Application to Physical when sending (encapsulation — adding headers at each layer). Data travels UP the layers from Physical to Application when receiving (decapsulation — removing headers at each layer)." }
+          ]
+        },
+        {
+          "id": "Q15_C",
+          "question": "How do you implement the Class C IP address in the Local Area Network? Describe. [8]",
+          "year": "2082 Sample",
+          "importance": 2,
+          "answer": [
+            { "type": "paragraph", "text": "An IP address is a unique numerical label assigned to each device in a network for identification and communication. IPv4 has 32 bits written as four octets separated by dots, for example 192.168.1.1." },
+            { "type": "subheading", "text": "Class C IP Address Properties" },
+            { "type": "list", "items": [
+              "Range: 192.0.0.0 to 223.255.255.255",
+              "Default Subnet Mask: 255.255.255.0",
+              "First 3 octets = Network ID, Last octet = Host ID",
+              "Maximum usable hosts per network: 254 (256 minus 2 for network address and broadcast address)"
+            ]},
+            { "type": "subheading", "text": "Implementation Steps for Class C in a LAN" },
+            { "type": "numbered_list", "items": [
+              "Assign Network Address: Choose a Class C network address such as 192.168.1.0",
+              "Set Subnet Mask: Use the default Class C subnet mask — 255.255.255.0 (also written as /24)",
+              "Assign Gateway (Router IP): Assign 192.168.1.1 to the router as the default gateway",
+              "Assign Host IPs: Assign addresses from 192.168.1.2 to 192.168.1.254 to individual devices",
+              "Reserved Addresses: 192.168.1.0 is the network address (not assignable). 192.168.1.255 is the broadcast address (not assignable to any device)."
+            ]},
+            { "type": "subheading", "text": "Example — School Computer Lab LAN Setup" },
+            {
+              "type": "table",
+              "headers": ["Device", "Assigned IP Address", "Role"],
+              "rows": [
+                ["Router", "192.168.1.1", "Default gateway connecting LAN to internet"],
+                ["Server", "192.168.1.2", "File server or web server"],
+                ["PC 1", "192.168.1.10", "Student workstation"],
+                ["PC 2", "192.168.1.11", "Student workstation"],
+                ["Printer", "192.168.1.50", "Network printer shared by all PCs"],
+                ["Network Address", "192.168.1.0", "Reserved — identifies the network"],
+                ["Broadcast Address", "192.168.1.255", "Reserved — sends data to all devices in network"]
+              ]
+            },
+            { "type": "paragraph", "text": "Class C is most suitable for small office or home LANs with up to 254 devices. Class A supports very large networks (millions of hosts). Class B supports medium-sized networks (thousands of hosts)." }
+          ]
+        }
+      ]
+    },
+    {
+      "slot": "Q16",
+      "chapter": "Programming in C — Structure or File Handling",
+      "type": "LAQ",
+      "marks": 8,
+      "options": [
+        {
+          "id": "Q16_A",
+          "question": "Write a C program that reads the account_number, name and address of ten customers and displays them using array and structure. [8]",
+          "year": "2082",
+          "importance": 3,
+          "answer": [
+            { "type": "paragraph", "text": "A structure in C is a user-defined data type that allows storing multiple variables of different data types under a single name. Here, we use a structure to store customer information and an array of structures to handle ten customers." },
+            { "type": "code", "lang": "c", "content": "#include <stdio.h>\n\nstruct Customer {\n    int  account_number;\n    char name[30];\n    char address[50];\n};\n\nint main() {\n    struct Customer c[10];\n    int i;\n\n    /* Input: Read details of 10 customers */\n    for (i = 0; i < 10; i++) {\n        printf(\"\\nEnter details for Customer %d:\\n\", i + 1);\n        printf(\"Account Number: \");\n        scanf(\"%d\", &c[i].account_number);\n        printf(\"Name: \");\n        scanf(\"%s\", c[i].name);\n        printf(\"Address: \");\n        scanf(\"%s\", c[i].address);\n    }\n\n    /* Output: Display all customer details */\n    printf(\"\\n%-10s %-20s %-30s\\n\", \"Acc. No.\", \"Name\", \"Address\");\n    printf(\"----------------------------------------------------------\\n\");\n    for (i = 0; i < 10; i++) {\n        printf(\"%-10d %-20s %-30s\\n\",\n               c[i].account_number, c[i].name, c[i].address);\n    }\n\n    return 0;\n}" },
+            { "type": "numbered_list", "items": [
+              "struct Customer defines a user-defined data type with three fields: account_number, name, and address.",
+              "struct Customer c[10] declares an array of 10 Customer structures to hold data for 10 customers.",
+              "The dot operator (.) is used to access individual fields: c[i].account_number, c[i].name, c[i].address.",
+              "The first for loop reads input from the user for all 10 customers.",
+              "The second for loop displays all 10 customer records in a formatted table."
+            ]}
+          ]
+        },
+        {
+          "id": "Q16_B",
+          "question": "What are the components of a function in C? Describe Call-by-Value and Call-by-Reference with programs. [4+4]",
+          "year": "2082 OR",
+          "importance": 3,
+          "answer": [
+            { "type": "subheading", "text": "Components of a Function in C" },
+            { "type": "list", "items": [
+              "Return Type: The data type of the value returned by the function. Example: int, float, void.",
+              "Function Name: A unique identifier following C naming rules. Cannot be a keyword.",
+              "Parameter List: The input values received by the function inside parentheses. Can be empty.",
+              "Function Body: The block of code enclosed in { } that performs the task.",
+              "Return Statement: The statement that returns a value back to the calling function (not needed for void functions)."
+            ]},
+            { "type": "subheading", "text": "Call-by-Value" },
+            { "type": "paragraph", "text": "In Call-by-Value, a COPY of the actual argument is passed to the function. Any changes made inside the function affect only the local copy and do NOT change the original variable in the calling function." },
+            { "type": "code", "lang": "c", "content": "#include <stdio.h>\n\nvoid square(int x) {\n    x = x * x;   /* Only the local copy changes */\n    printf(\"Inside function: %d\\n\", x);\n}\n\nint main() {\n    int a = 5;\n    square(a);\n    printf(\"After function call: %d\\n\", a); /* Still 5 — unchanged */\n    return 0;\n}" },
+            { "type": "subheading", "text": "Call-by-Reference" },
+            { "type": "paragraph", "text": "In Call-by-Reference, the ADDRESS of the actual variable is passed to the function using a pointer. Changes made inside the function through the pointer DIRECTLY affect the original variable in the calling function." },
+            { "type": "code", "lang": "c", "content": "#include <stdio.h>\n\nvoid square(int *x) {\n    *x = (*x) * (*x);   /* Changes the original through the pointer */\n    printf(\"Inside function: %d\\n\", *x);\n}\n\nint main() {\n    int a = 5;\n    square(&a);          /* Pass address of variable a */\n    printf(\"After function call: %d\\n\", a); /* Now 25 — changed */\n    return 0;\n}" },
+            {
+              "type": "table",
+              "headers": ["Basis", "Call-by-Value", "Call-by-Reference"],
+              "rows": [
+                ["What is passed", "A copy of the variable value", "The memory address of the variable"],
+                ["Effect on original", "Original variable is NOT changed", "Original variable IS changed"],
+                ["Safety", "Safer — protects original data", "Less safe — original data can be modified"],
+                ["Speed", "Slower — copy must be created", "Faster — no copy, works directly on original"],
+                ["Syntax", "square(a);", "square(&a); and function uses int *x"]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "Q16_C",
+          "question": "Write a C program to enter ten integer numbers into an array, sort and display them in ascending order. [8]",
+          "year": "Sample",
+          "importance": 2,
+          "answer": [
+            { "type": "paragraph", "text": "The following C program reads 10 integers into an array and sorts them in ascending order using the Bubble Sort algorithm." },
+            { "type": "code", "lang": "c", "content": "#include <stdio.h>\n\nint main() {\n    int a[10], i, j, temp;\n\n    /* Input: Read 10 integers */\n    printf(\"Enter 10 integers:\\n\");\n    for (i = 0; i < 10; i++) {\n        printf(\"Number %d: \", i + 1);\n        scanf(\"%d\", &a[i]);\n    }\n\n    /* Bubble Sort — Ascending Order */\n    for (i = 0; i < 9; i++) {\n        for (j = 0; j < 9 - i; j++) {\n            if (a[j] > a[j + 1]) {\n                /* Swap adjacent elements */\n                temp     = a[j];\n                a[j]     = a[j + 1];\n                a[j + 1] = temp;\n            }\n        }\n    }\n\n    /* Output: Display sorted array */\n    printf(\"\\nSorted Numbers (Ascending Order):\\n\");\n    for (i = 0; i < 10; i++) {\n        printf(\"%d \", a[i]);\n    }\n\n    return 0;\n}" },
+            { "type": "paragraph", "text": "Bubble Sort Logic: In each pass, adjacent elements are compared. If the left element is greater than the right, they are swapped. After each complete pass, the largest unsorted element 'bubbles up' to its correct position at the end. For 10 elements, a maximum of 9 passes are needed." },
+            { "type": "paragraph", "text": "Example: Input = 5 3 8 1 9 2 7 4 6 0 --- Output = 0 1 2 3 4 5 6 7 8 9" }
+          ]
+        },
+        {
+          "id": "Q16_D",
+          "question": "Write a C program to read the marks of any 5 students and count how many students passed and failed. [8]",
+          "year": "Sample OR",
+          "importance": 2,
+          "answer": [
+            { "type": "paragraph", "text": "The following C program reads marks of 5 students, checks each mark against the pass mark (40), and counts how many students passed and how many failed." },
+            { "type": "code", "lang": "c", "content": "#include <stdio.h>\n\nint main() {\n    int marks[5], i, pass = 0, fail = 0;\n\n    /* Input: Read marks of 5 students */\n    printf(\"Enter marks of 5 students:\\n\");\n    for (i = 0; i < 5; i++) {\n        printf(\"Student %d marks: \", i + 1);\n        scanf(\"%d\", &marks[i]);\n    }\n\n    /* Process: Count pass and fail */\n    for (i = 0; i < 5; i++) {\n        if (marks[i] >= 40) {\n            pass++;\n        } else {\n            fail++;\n        }\n    }\n\n    /* Output: Display results */\n    printf(\"\\nTotal Students : 5\");\n    printf(\"\\nPassed Students: %d\", pass);\n    printf(\"\\nFailed Students: %d\", fail);\n\n    return 0;\n}" },
+            { "type": "subheading", "text": "Program Explanation" },
+            { "type": "numbered_list", "items": [
+              "int marks[5] declares an array of 5 integers to store marks of 5 students.",
+              "pass = 0 and fail = 0 initialize both counters to zero before the loop begins.",
+              "The first for loop reads each student's marks using scanf().",
+              "The second for loop checks: if marks[i] >= 40, the pass counter increments using pass++; otherwise fail++ increments the fail counter.",
+              "The pass mark is 40 as per NEB standard. Finally, printf() displays both counts."
+            ]}
+          ]
+        },
+        {
+          "id": "Q16_E",
+          "question": "Create a structure named 'player' to store pname, game, age, and salary. Write a C program to input details for five players and display their information. [8]",
+          "year": "2081 GIE Set B",
+          "importance": 2,
+          "answer": [
+            { "type": "paragraph", "text": "The following C program defines a structure named player with four fields and stores data for five players using an array of structures." },
+            { "type": "code", "lang": "c", "content": "#include <stdio.h>\n\nstruct player {\n    char pname[30];\n    char game[20];\n    int  age;\n    float salary;\n};\n\nint main() {\n    struct player p[5];\n    int i;\n\n    /* Input: Read details for 5 players */\n    for (i = 0; i < 5; i++) {\n        printf(\"\\nEnter details for Player %d:\\n\", i + 1);\n        printf(\"Name   : \"); scanf(\"%s\", p[i].pname);\n        printf(\"Game   : \"); scanf(\"%s\", p[i].game);\n        printf(\"Age    : \"); scanf(\"%d\", &p[i].age);\n        printf(\"Salary : \"); scanf(\"%f\", &p[i].salary);\n    }\n\n    /* Output: Display all player details */\n    printf(\"\\n%-20s %-15s %-5s %-10s\\n\",\n           \"Name\", \"Game\", \"Age\", \"Salary\");\n    printf(\"--------------------------------------------------\\n\");\n    for (i = 0; i < 5; i++) {\n        printf(\"%-20s %-15s %-5d %-10.2f\\n\",\n               p[i].pname, p[i].game, p[i].age, p[i].salary);\n    }\n\n    return 0;\n}" },
+            { "type": "numbered_list", "items": [
+              "struct player defines a user-defined data type with four fields: pname (char array), game (char array), age (int), and salary (float).",
+              "struct player p[5] declares an array of 5 player structures.",
+              "The first loop reads data for all 5 players using scanf() with the dot operator to access each field.",
+              "The second loop displays all 5 player records in a neatly formatted output using printf()."
+            ]}
+          ]
+        }
+      ]
+    }
+  ]
+}
